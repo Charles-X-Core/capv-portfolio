@@ -11,6 +11,29 @@
   position: relative; /* Necesario para que la imagen absoluta se posicione respecto a esto */
  
 }
+
+.about-container {
+ 
+  max-width: min(1400px, 92vw);
+  margin-inline: auto;   /* 🔥 centra todo */
+  width: 100%;
+  position: relative;
+  z-index: 1;            /* sobre el background */
+}
+
+.about-right {
+  position: relative;
+  /* Mueve ligeramente todo el bloque hacia la izquierda */
+  transform: translateX(-3.5rem);
+  transition: transform 220ms ease;
+}
+
+/* En pantallas pequeñas no aplicamos el desplazamiento para evitar problemas de diseño */
+@media (max-width: 900px) {
+  .about-right {
+    transform: none;
+  }
+}
 /* ===============================
    HEADER
    =============================== 

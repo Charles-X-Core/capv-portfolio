@@ -30,16 +30,19 @@ export default function About() {
 
   return (
     <motion.section
-      id="about"
-      ref={ref}
-      className="about"
-      variants={appleContainer}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-    >
+  id="about"
+  ref={ref}
+  className="about"
+  variants={appleContainer}
+  initial="hidden"
+  animate={isInView ? "visible" : "hidden"}
+>
       {/* BACKGROUND */}
       <img src="/img/tuerca.png" className="about-bg-gear" alt="" />
 
+
+{/* 🔥 CONTENEDOR CENTRADO */}
+  <div className="about-container">
       {/* HEADER */}
       <motion.div className="about-header" variants={appleItem}>
         <span className="about-eyebrow">PERFIL PROFESIONAL</span>
@@ -124,6 +127,8 @@ export default function About() {
         </motion.div>
 
         {/* DERECHA */}
+
+        <div className="about-right"> 
         <motion.div
           className="about-panels"
           variants={appleItemRight}
@@ -147,7 +152,10 @@ export default function About() {
             </div>
           </div>
         </motion.div>
+        </div>
+        </div>
       </div>
     </motion.section>
+    
   );
 }
