@@ -1059,24 +1059,122 @@ body.light .card-tags span {
 .focus-cards-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 .focus-item {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 1.2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 1.6rem;
   background: var(--bg-card);
+  border: 2px solid var(--border-soft);
+  border-radius: calc(var(--radius) + 4px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: var(--nav-blur);
+}
+
+/* Línea decorativa izquierda */
+.focus-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  transform-origin: bottom;
+}
+
+/* Icono de enfoque */
+.focus-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-soft);
+  border-radius: 50%;
   border: 1px solid var(--border-soft);
-  border-radius: var(--radius);
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
   transition: all 0.3s ease;
 }
 
-/* Efecto de luz al pasar el mouse por los principios */
+/* Contenido del enfoque */
+.focus-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.focus-content strong {
+  display: block;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.025px;
+}
+
+.focus-content p {
+  color: var(--about-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Efecto de hover mejorado */
 .focus-item:hover {
   border-color: var(--primary);
-  transform: translateX(10px);
+  transform: translateY(-4px) scale(1.02);
   background: var(--bg-soft);
+  box-shadow: 
+    0 12px 28px rgba(37, 99, 235, 0.15),
+    0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+.focus-item:hover::before {
+  transform: scaleY(1);
+}
+
+.focus-item:hover .focus-icon {
+  background: var(--primary);
+  color: white;
+  transform: rotate(-15deg) scale(1.1);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+/* Animación de entrada mejorada */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsivo para focus cards */
+@media (max-width: 480px) {
+  .focus-item {
+    padding: 1.4rem;
+    gap: 10px;
+  }
+  
+  .focus-icon {
+    font-size: 1.75rem;
+  }
+  
+  .focus-content strong {
+    font-size: 1rem;
+  }
 }
 
 .focus-icon {

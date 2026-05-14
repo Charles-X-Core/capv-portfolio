@@ -561,6 +561,13 @@ body:not(.light) .hero-grid {
   overflow: hidden; /* 🔥 ESTO ES LO MÁS IMPORTANTE */
 }
 
+/* Hide AtomicNetwork on mobile to prevent overflow */
+@media (max-width: 900px) {
+  .hero-right {
+    display: none;
+  }
+}
+
 
   .hero-right canvas,
 .hero-right svg {
