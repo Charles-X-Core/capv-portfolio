@@ -72,13 +72,22 @@
 
 .hero-left {
   width: 100%;
-  max-width: 480px;
+  max-width: 100%;
   z-index: 3;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   text-align: left;
   padding-left: 5px;
+}
+
+@media (max-width: 899px) {
+  .hero-left {
+    max-width: 380px;
+  }
+  .hero-description {
+    max-width: 360px;
+  }
 }
 
 /* Tagline */
@@ -232,11 +241,17 @@
 
 /* Description */
 .hero-description {
-  max-width: 460px;
+  max-width: 100%;
   font-size: clamp(0.85rem, 3vw, 1.05rem);
   line-height: 1.6;
   color: var(--text-muted);
   overflow-wrap: break-word;
+}
+
+@media (max-width: 899px) {
+  .hero-description {
+    max-width: 360px;
+  }
 }
 
 /* Actions - buttons */
