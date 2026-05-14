@@ -1228,3 +1228,223 @@ body.light .card-tags span {
     height: 72px;
   }
 }
+
+/* ===============================
+    ENGINEERING FOCUS RADAR
+    =============================== */
+.engineering-focus {
+  padding: 4rem 0;
+  background: var(--bg-main);
+}
+
+.engineering-focus .section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  position: relative;
+}
+
+.engineering-focus .section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.radar-chart-container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.radar-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Radar axes and labels */
+.radar-axes line {
+  stroke: rgba(37,99,235,0.15);
+  stroke-width: 1;
+}
+
+.radar-labels {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  fill: rgba(229,231,235,0.7);
+}
+
+.radar-labels text {
+  pointer-events: none;
+}
+
+/* Background circles */
+.radar-chart circle {
+  fill: none;
+  stroke: rgba(37,99,235,0.08);
+  stroke-width: 1;
+}
+
+/* Skill polygon */
+.radar-skill {
+  fill: rgba(37,99,235,0.15);
+  stroke: rgba(37,99,235,0.4);
+  stroke-width: 2;
+  transition: all 0.8s ease;
+  /* Animation will be triggered by scroll */
+}
+
+/* Skill points */
+.radar-points circle {
+  fill: rgba(37,99,235,0.8);
+  stroke: white;
+  stroke-width: 2;
+  transition: all 0.6s ease;
+}
+
+/* Hover effects on points and polygon */
+.radar-chart:hover .radar-skill {
+  fill: rgba(37,99,235,0.25);
+  stroke: rgba(37,99,235,0.6);
+  transform: scale(1.03);
+}
+
+.radar-chart:hover .radar-points circle {
+  fill: rgba(37,99,235,1);
+  stroke: var(--primary);
+  stroke-width: 3;
+  transform: scale(1.2);
+}
+
+/* Impact metrics */
+.impact-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.metric-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.metric-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(37,99,235,0.15);
+  border-color: var(--primary);
+}
+
+.metric-item h3 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 0.5rem;
+  line-height: 1;
+}
+
+.metric-item p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .engineering-focus {
+    padding: 3rem 0;
+  }
+
+  .engineering-focus .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .radar-chart-container {
+    max-width: 250px;
+  }
+
+  .impact-metrics {
+    gap: 1rem;
+  }
+
+  .metric-item {
+    padding: 1.2rem;
+  }
+
+  .metric-item h3 {
+    font-size: 1.8rem;
+  }
+
+  .metric-item p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .engineering-focus {
+    padding: 2.5rem 0;
+  }
+
+  .engineering-focus .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .radar-chart-container {
+    max-width: 220px;
+  }
+
+  .impact-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .metric-item {
+    padding: 1rem;
+  }
+
+  .metric-item h3 {
+    font-size: 1.6rem;
+  }
+
+  .metric-item p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Animation for radar when section is in view */
+/* We'll use the same scroll reveal mechanism as the rest of About */
+.radar-chart-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.radar-chart-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animate the skill points and polygon on reveal */
+.radar-chart-container.visible .radar-skill {
+  fill: rgba(37,99,235,0.2);
+  stroke: rgba(37,99,235,0.5);
+}
+
+.radar-chart-container.visible .radar-points circle {
+  fill: rgba(37,99,235,0.9);
+}
