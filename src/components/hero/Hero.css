@@ -3,8 +3,7 @@
    =============================== */
 .hero {
   position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden;
   background: transparent;
   padding: 2.5rem 5% 3rem;
   z-index: var(--z-base, 1);
