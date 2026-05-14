@@ -303,3 +303,105 @@ body:not(.light) .project-title {
   font-weight: 600;
   text-decoration: none;
 }
+
+/* ===============================
+    RESPONSIVE MOBILE
+    =============================== */
+@media (max-width: 900px) {
+  .projects {
+    padding: 3rem 5%;
+  }
+
+  .projects-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .projects-list {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projects-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects-label {
+    display: none;
+  }
+
+  .project-item {
+    flex-shrink: 0;
+    width: 200px;
+    padding: 0.85rem;
+    scroll-snap-align: start;
+  }
+
+  .project-item small {
+    display: none;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects {
+    padding: 2.5rem 4%;
+  }
+
+  .project-media {
+    height: 200px;
+  }
+
+  .project-title-block {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+  }
+
+  .project-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .project-body {
+    padding: 1.5rem;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
+  }
+
+  .tech-tags {
+    gap: 0.4rem;
+  }
+
+  .tech {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-actions a {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+}

@@ -24,3 +24,19 @@
 .footer-right a:hover {
   color: var(--text-main);
 }
+
+/* ===============================
+    RESPONSIVE MOBILE
+    =============================== */
+@media (max-width: 640px) {
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem 5%;
+  }
+
+  .footer-right {
+    gap: 1rem;
+  }
+}
