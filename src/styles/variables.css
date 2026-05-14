@@ -17,6 +17,17 @@
   --grid-line: rgba(255, 255, 255, 0.04);
 
   --radius: 14px;
+
+  /* ===== Z-INDEX SYSTEM ===== */
+  --z-base: 1;
+  --z-content: 10;
+  --z-floating: 50;
+  --z-navbar: 100;
+  --z-drawer: 999;
+  --z-drawer-overlay: 998;
+  --z-backdrop: 250;
+  --z-overlay: 1000;
+  --z-modal: 2000;
   --skill-card-bg: linear-gradient(
     165deg,
     rgba(15, 23, 42, 0.92),

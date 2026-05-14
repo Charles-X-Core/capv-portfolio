@@ -1,5 +1,8 @@
 .contact-section {
-  padding: 0rem 5%;
+  padding: 0 5%;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   background: radial-gradient(
     circle at top,
     rgba(37, 99, 235, 0.12),
@@ -159,9 +162,17 @@
 .contact-normal {
   position: relative;
   min-height: 100vh;
-  padding: 4.5rem 5%;
+  padding: 3rem 5%;
   background: var(--bg-main);
-  overflow: visible;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 900px) {
+  .contact-normal {
+    padding: 4.5rem 5%;
+  }
 }
 
 /* Botón volver */

@@ -1,365 +1,335 @@
 /* ================================
-   NAVBAR BASE
+   NAVBAR
    ================================ */
 .navbar {
-   position: sticky;
+  position: sticky;
   top: 0;
-  z-index: 300;
+  z-index: var(--z-navbar, 100);
+  height: var(--nav-height, 72px);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+  border-bottom: 1px solid var(--nav-border);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s ease,
+              opacity 0.25s ease;
+}
 
-  height: var(--nav-height);
-  padding: 0 6%;
-
+.navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  background: var(--nav-bg);
-  backdrop-filter: var(--nav-blur);
-
-  border-bottom: 1px solid var(--nav-border);
-
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.3s ease,
-    backdrop-filter 0.3s ease,
-    border-color 0.3s ease,
-    opacity 0.25s ease;
+  gap: 1rem;
 }
 
+/* States */
+.navbar-hidden {
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
 
-
-/* =========================
-   TOP → TRANSPARENTE
-========================= */
 .navbar-top {
-    background: var(--nav-bg-top);
+  background: transparent;
   backdrop-filter: none;
   border-bottom-color: transparent;
-  box-shadow: none;
 }
 
-/* =========================
-   SCROLLED → BLUR
-========================= */
 .navbar-scrolled {
- background: var(--nav-bg-scrolled);
+  background: var(--nav-bg-scrolled);
   backdrop-filter: var(--nav-blur);
-    border-bottom-color: var(--nav-border);
-
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-bottom-color: var(--nav-border);
 }
 
-
-
-
-/* ================================
-   IZQUIERDA / LOGO
-   ================================ */
+/* Logo */
 .navbar-left {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .navbar-logo {
-  font-weight: 700;
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
   color: var(--primary);
-  letter-spacing: 0.02em;
 }
 
-/* ================================
-   LINKS CENTRALES
-   ================================ */
+.navbar-logo img {
+  height: 28px;
+  width: auto;
+}
+
+/* Desktop links */
 .navbar-links {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.navbar-links a {
+.navbar-links button {
+  all: unset;
+  cursor: pointer;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--nav-text);
+  position: relative;
+  padding: 0.25rem 0;
   transition: color 0.2s ease;
 }
 
-.navbar-links a:hover {
-  color: var(--text-main);
+.navbar-links button:hover,
+.navbar-links button:focus-visible {
+  color: var(--nav-text-hover);
 }
 
-/* ================================
-   ACCIONES DERECHA
-   ================================ */
+.navbar-links button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--brand-gradient);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.navbar-links button:hover::after,
+.navbar-links button:focus-visible::after {
+  width: 100%;
+}
+
+/* Actions */
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
-/* ================================
-   TOGGLE DARK / LIGHT
-   ================================ */
+/* Theme toggle */
 .theme-toggle {
   width: 38px;
   height: 38px;
-
   display: grid;
   place-items: center;
-
   border-radius: 50%;
   border: 1px solid var(--border-soft);
-
   background: var(--bg-card);
   color: var(--text-main);
-
   font-size: 0.95rem;
   cursor: pointer;
-
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .theme-toggle:hover {
   background: color-mix(in srgb, var(--primary) 12%, var(--bg-card));
 }
 
-/* ================================
-   BOTÓN CTA
-   ================================ */
+/* CTA */
 .navbar-cta {
   background: var(--primary);
   color: white;
-
   border: none;
   border-radius: 999px;
-
   padding: 0.55rem 1.4rem;
   font-size: 0.9rem;
   font-weight: 600;
-
   cursor: pointer;
   transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
 .navbar-cta:hover {
   background: var(--primary-light);
 }
 
+/* ================================
+   HAMBURGER (animated icon)
+   ================================ */
+.nav-hamburger {
+  position: relative;
+  z-index: calc(var(--z-drawer, 999) + 1);
+  width: 36px;
+  height: 36px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text-main);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 /* ================================
-   NAVBAR HIDE ON SCROLL
+   DRAWER OVERLAY (fixed backdrop)
    ================================ */
-.navbar {
-  transition:
-    transform 0.35s ease,
-    opacity 0.35s ease;
-}
-.navbar-disabled {
-  pointer-events: none;
-  opacity: 0.9;
-}
-
-/* ===============================
-    MOBILE MENU FADE EFFECT
-    =============================== */
-body.menu-open::before {
-  content: '';
+.drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-drawer-overlay, 998);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(6px);
-  z-index: 250; /* Below navbar (300) */
-}
-
-.navbar-hidden {
-  transform: translateY(-110%);
+  -webkit-backdrop-filter: blur(6px);
   opacity: 0;
-  pointer-events: none;
-
-  /* 🔑 elimina la línea */
- background: transparent;
-  backdrop-filter: none;
-  border-bottom-color: transparent;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
+.drawer-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* ================================
-   NAVBAR LINKS (BUTTONS)
+   DRAWER PANEL (fixed, slides in)
    ================================ */
-.navbar-links button {
-  all: unset; /* 🔑 borra estilos default del button */
-  cursor: pointer;
-
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--nav-text);
-
-  position: relative;
-  padding: 0.25rem 0;
-
-  transition: color 0.2s ease;
-}
-
-/* hover */
-.navbar-links button:hover {
-   color: var(--nav-text-hover);
-}
-
-/* underline animado */
-.navbar-links button::after {
- content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-
-  width: 0%;
-  height: 2px;
-
-  background: var(--brand-gradient);
-  border-radius: 999px;
-
-  transition: width 0.25s ease;
-}
-
-.navbar-links button:hover::after {
-  width: 100%;
-}
-
-/* focus (accesibilidad) */
-.navbar-links button:focus-visible {
-  outline: none;
-  color: var(--text-main);
-}
-
-.navbar-links button:focus-visible::after {
-  width: 100%;
-}
-.navbar-links button.active {
-  color: var(--text-main);
-}
-
-.navbar-links button.active::after {
-  width: 100%;
-}
-.navbar-logo {
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--z-drawer, 999);
+  width: min(82vw, 340px);
+  height: 100dvh;
+  background: rgba(5, 10, 25, 0.95);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-left: 1px solid var(--border-soft);
+  padding: 1.5rem;
   display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.3s ease,
+              visibility 0.3s ease;
+}
+
+.drawer-panel.open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.6rem;
-  cursor: pointer;
-
-  font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.12em;
+  margin-bottom: 2.5rem;
 }
 
-.navbar-logo img {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-}
-.identity-toggle {
-  border: 1px solid var(--border-soft);
-  background: transparent;
+.drawer-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: var(--text-muted);
-
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-
-  cursor: pointer;
-  transition: all 0.25s ease;
+  font-weight: 600;
 }
 
-.identity-toggle:hover {
-  color: var(--text-main);
-}
-
-.identity-toggle.active {
-  background: var(--brand-gradient);
-  color: white;
-  border-color: transparent;
-}
-.nav-hamburger {
+.drawer-close {
+  width: 36px;
+  height: 36px;
   display: grid;
-  width: 38px;
-  height: 38px;
   place-items: center;
-
   border-radius: 10px;
   border: 1px solid var(--border-soft);
-
-  background: var(--bg-card);
+  background: transparent;
   color: var(--text-main);
-
   font-size: 1.1rem;
   cursor: pointer;
 }
-.navbar-links.is-hidden {
-  display: none;
+
+.drawer-close:hover {
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
 }
 
-.nav-mobile {
-  isolation: isolate;
-  position: fixed;
-  inset: 0;
-  z-index: 400;
-  pointer-events: none;
-}
-.nav-mobile-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.nav-mobile-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(85%, 320px);
-  height: 100%;
-
-  background: var(--bg-card);
-  border-left: 1px solid var(--border-soft);
-
-  padding: 1.5rem;
-
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.nav-mobile.open {
-  pointer-events: auto;
-}
-
-.nav-mobile.open .nav-mobile-backdrop {
-  opacity: 1;
-}
-
-.nav-mobile.open .nav-mobile-panel {
-  transform: translateX(0);
-}
-.nav-mobile-close {
-  background: none;
-  border: none;
-  color: var(--text-main);
-  font-size: 1.4rem;
-  cursor: pointer;
-  margin-bottom: 2rem;
-}
-.nav-mobile-links {
+.drawer-links {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 0.5rem;
 }
 
-.nav-mobile-links button {
+.drawer-links button {
   all: unset;
   cursor: pointer;
-
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-main);
+  padding: 1rem 1rem;
+  border-radius: 12px;
+  transition: background 0.2s ease, color 0.2s ease;
+  border: 1px solid transparent;
+}
 
-  padding: 0.6rem 0;
+.drawer-links button:hover,
+.drawer-links button:focus-visible {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  color: var(--primary);
+  border-color: var(--border-soft);
+}
+
+/* ================================
+   MOBILE (< 900px)
+   ================================ */
+@media (max-width: 899px) {
+  .navbar {
+    height: 64px;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .navbar-inner {
+    padding: 0 4%;
+  }
+
+  /* On mobile, keep only: logo + hamburger + theme in header */
+  .navbar-actions .navbar-cta {
+    display: none;
+  }
+}
+
+/* ================================
+   SMALL MOBILE (< 480px)
+   ================================ */
+@media (max-width: 480px) {
+  .navbar-inner {
+    padding: 0 3%;
+  }
 }

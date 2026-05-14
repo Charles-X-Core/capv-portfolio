@@ -1,8 +1,3 @@
-/* =========================================
-   CSS RESET PROFESIONAL
-   ========================================= */
-
-/* Box sizing consistente */
 *,
 *::before,
 *::after {
@@ -11,20 +6,21 @@
   padding: 0;
 }
 
-/* HTML y Body base */
 html,
 body {
   width: 100%;
-  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Body base */
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* Imágenes y medios */
 img,
 picture,
 video,
@@ -34,7 +30,6 @@ svg {
   max-width: 100%;
 }
 
-/* Formularios */
 input,
 button,
 textarea,
@@ -42,26 +37,18 @@ select {
   font: inherit;
 }
 
-/* Botones */
 button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-/* Enlaces */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Listas */
 ul,
 ol {
   list-style: none;
-}
-
-/* Evita overflow horizontal accidental */
-body {
-  overflow-x: hidden;
 }

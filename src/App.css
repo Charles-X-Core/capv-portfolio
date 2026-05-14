@@ -1,5 +1,13 @@
-/* App.css limpio */
 #root {
   width: 100%;
-  min-height: 100vh;
+  max-width: 100vw;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#root > * {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }

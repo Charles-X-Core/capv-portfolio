@@ -1,175 +1,117 @@
 import { useEffect, useState } from 'react'
-
 import './Navbar.css'
 
 export default function Navbar({ hidden , atTop }) {
   const [theme, setTheme] = useState('dark')
-  const [identity, setIdentity] = useState('personal')
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 900);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-
-const closeMenu = () => setMenuOpen(false);
-
+    const mq = window.matchMedia('(max-width: 899px)')
+    const handler = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   useEffect(() => {
     document.body.classList.toggle('light', theme === 'light')
     document.body.classList.toggle('dark', theme === 'dark')
-
-    document.body.classList.toggle(
-      'identity-redsparrow',
-      identity === 'dev'
-    )
-    document.body.classList.toggle(
-      'identity-personal',
-      identity === 'personal'
-    )
-  }, [theme, identity])
-
+  }, [theme])
 
   useEffect(() => {
     if (menuOpen) {
-      document.body.style.overflow = "hidden";
-      document.body.classList.add('menu-open');
+      document.body.classList.add('menu-open')
     } else {
-      document.body.style.overflow = "";
-      document.body.classList.remove('menu-open');
+      document.body.classList.remove('menu-open')
     }
-  }, [menuOpen]);
+  }, [menuOpen])
 
+  const closeMenu = () => setMenuOpen(false)
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
   }
 
-  const toggleIdentity = () => {
-    setIdentity(prev => (prev === 'personal' ? 'dev' : 'personal'))
+  const goTo = (id) => {
+    closeMenu()
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
   }
 
-const goTo = (id) => {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  el.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-};
-
   return (
-<header
-  className={`navbar
-    ${menuOpen ? "navbar-disabled" : ""}
-    ${hidden && !menuOpen ? "navbar-hidden" : ""}
-    ${atTop && !menuOpen ? "navbar-top" : "navbar-scrolled"}
-  `}
->
+    <header
+      className={`navbar
+        ${hidden && !menuOpen ? 'navbar-hidden' : ''}
+        ${atTop && !menuOpen ? 'navbar-top' : 'navbar-scrolled'}
+      `}
+    >
+      <div className="navbar-inner">
+        <div className="navbar-left">
+          <div className="navbar-logo" onClick={() => goTo('hero')}>
+            <img src="/img/logo.png" alt="CAPV" />
+            <span>CAPV</span>
+          </div>
+        </div>
 
+        {!isMobile && (
+          <nav className="navbar-links">
+            <button onClick={() => goTo('about')}>Sobre mí</button>
+            <button onClick={() => goTo('experience')}>Experiencia</button>
+            <button onClick={() => goTo('projects')}>Proyectos</button>
+          </nav>
+        )}
 
+        <div className="navbar-actions">
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Cambiar tema"
+          >
+            {theme === 'dark' ? '☀︎' : '☾'}
+          </button>
 
-      {/* LOGO */}
-      <div className="navbar-left">
-        <div className="navbar-logo"  onClick={() => goTo('hero')}>
-          {identity === 'dev' ? (
-            <>
-              <img src="/img/logo.png" alt="RedSparrow" />
-              <span>RedSparrow</span>
-            </>
-          ) : (
-            <>
-              <img src="/img/logo.png" alt="CAPV" />
-              <span>CAPV</span>
-            </>
+          {!isMobile && (
+            <button className="navbar-cta" onClick={() => goTo('contact')}>
+              Contactame
+            </button>
           )}
+
+          <button
+            className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            onClick={() => setMenuOpen(v => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
       </div>
 
-      {/* LINKS */}
-      <nav
-  className={`navbar-links ${isMobile ? "is-hidden" : ""}`}
->
-
-        <button onClick={() => goTo('about')}>Sobre mí</button>
-        <button onClick={() => goTo('experience')}>Experiencia</button>
-        <button onClick={() => goTo('projects')}>Proyectos</button>
-      </nav>
-
-      {/* ACTIONS */}
-      <div className="navbar-actions">
-
-        {/* MODO DEV */}
-       { /*<button
-          className={`identity-toggle ${
-            identity === 'dev' ? 'active' : ''
-          }`}
-          onClick={toggleIdentity}
-        >
-          {identity === 'dev' ? 'DEV MODE' : 'PERSONAL'}
-        </button>*/}
-
-        {/* THEME */}
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label="Cambiar tema"
-        >
-          {theme === 'dark' ? '☀︎' : '☾'}
-        </button>
-
-        <button className="navbar-cta" onClick={() => goTo('contact')}>
-          Contactame
-        </button>
-
-        {isMobile && (
-  <button
-    className="nav-hamburger"
-    aria-label="Abrir menú"
-    onClick={() => setMenuOpen(true)}
-  >
-    ☰
-  </button>
-)}
-
-
+      {/* Drawer overlay + panel */}
+      <div
+        className={`drawer-overlay ${menuOpen ? 'open' : ''}`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
+      <div className={`drawer-panel ${menuOpen ? 'open' : ''}`}>
+        <div className="drawer-header">
+          <span className="drawer-title">Menú</span>
+          <button className="drawer-close" onClick={closeMenu} aria-label="Cerrar">
+            ✕
+          </button>
+        </div>
+        <nav className="drawer-links">
+          <button onClick={() => goTo('about')}>Sobre mí</button>
+          <button onClick={() => goTo('experience')}>Experiencia</button>
+          <button onClick={() => goTo('projects')}>Proyectos</button>
+          <button onClick={() => goTo('contact')}>Contacto</button>
+        </nav>
       </div>
-
-      {/* MOBILE MENU */}
-<div className={`nav-mobile ${menuOpen ? 'open' : ''}`}>
-  <div className="nav-mobile-backdrop" onClick={closeMenu} />
-
-  <div className="nav-mobile-panel">
-    <button className="nav-mobile-close" onClick={closeMenu}>
-      ✕
-    </button>
-
-    <nav className="nav-mobile-links">
-      <button onClick={() => { goTo('about'); closeMenu(); }}>
-        Sobre mí
-      </button>
-      <button onClick={() => { goTo('experience'); closeMenu(); }}>
-        Experiencia
-      </button>
-      <button onClick={() => { goTo('projects'); closeMenu(); }}>
-        Proyectos
-      </button>
-      <button onClick={() => { goTo('contact'); closeMenu(); }}>
-        Contacto
-      </button>
-    </nav>
-  </div>
-</div>
-
     </header>
   )
-  
 }

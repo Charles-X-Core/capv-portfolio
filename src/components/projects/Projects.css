@@ -1,5 +1,14 @@
 .projects {
-  padding: 4rem 5%;
+  padding: 3rem 5%;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .projects {
+    padding: 4rem 5%;
+  }
 }
 
 .projects-header {

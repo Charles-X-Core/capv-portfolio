@@ -4,12 +4,19 @@
 */
 
 .about {
-  padding-inline: clamp(4rem,6%);
+  padding: 3rem 5%;
   background: var(--bg-main);
   color: var(--text-main);
-  overflow: visible; /* Asegura que las cartas no se corten aquí */
-  position: relative; /* Necesario para que la imagen absoluta se posicione respecto a esto */
- 
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 900px) {
+  .about {
+    padding: 5rem 6%;
+  }
 }
 
 .about-container {
@@ -981,36 +988,25 @@ body.light .card-tags span {
 
 .about-bg-gear {
   position: absolute;
-  
-  /* 1. EL CAMBIO CLAVE: Usa un valor fijo en lugar de 50% */
-  /* Esto la ancla a una posición fija desde arriba, sin importar cuánto crezca la sección */
-  top: 350px;        /* Ajusta este número para subirla o bajarla a tu gusto */
-  right: 0;          /* Pegada a la derecha */
-  
-  /* 2. MANTENER EL EFECTO DE MITAD OCULTA */
-  /* Solo usamos translate en X para sacarla de la pantalla, el eje Y ya es fijo */
-  transform: translateX(50%); 
-  
-  /* 3. TAMAÑO Y ESTILO */
-  width: 900px;      
+  top: 350px;
+  right: 0;
+  transform: translateX(50%);
+  width: min(900px, 80vw);
   height: auto;
-  opacity: 0.04;     /* Un poco más sutil para que no distraiga */
-  pointer-events: none; 
-  z-index: 0;        /* Siempre detrás de todo */
-
-  /* 4. ANIMACIÓN LIMPIA */
-  /* Quitamos el translate del keyframe para que sea más estable */
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
   animation: rotate-gear-independent 80s linear infinite;
 }
 
-/* Nueva animación simplificada */
 @keyframes rotate-gear-independent {
-  from {
-    /* Mantenemos la posición de la mitad fuera y rotamos */
-    transform: translateX(50%) rotate(0deg);
-  }
-  to {
-    transform: translateX(50%) rotate(360deg);
+  from { transform: translateX(50%) rotate(0deg); }
+  to { transform: translateX(50%) rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .about-bg-gear {
+    display: none;
   }
 }
 .about-description-container.collapsed .about-description {
