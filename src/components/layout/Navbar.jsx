@@ -1,22 +1,22 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 import './Navbar.css'
 
-import { useNavbarLayout } from "../../hooks/useNavbarLayout";
-
 export default function Navbar({ hidden , atTop }) {
   const [theme, setTheme] = useState('dark')
-  const [identity, setIdentity] = useState('personal') // 👈 NUEVO
+  const [identity, setIdentity] = useState('personal')
   const [menuOpen, setMenuOpen] = useState(false);
-const navbarRef = useRef(null);
-const linksRef = useRef(null);
-const actionsRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-const isCompact = useNavbarLayout({
-  containerRef: navbarRef,
-  linksRef,
-  actionsRef,
-});
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 900);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
 
 const closeMenu = () => setMenuOpen(false);
@@ -98,8 +98,7 @@ const goTo = (id) => {
 
       {/* LINKS */}
       <nav
-  ref={linksRef}
-  className={`navbar-links ${isCompact ? "is-hidden" : ""}`}
+  className={`navbar-links ${isMobile ? "is-hidden" : ""}`}
 >
 
         <button onClick={() => goTo('about')}>Sobre mí</button>
@@ -133,7 +132,7 @@ const goTo = (id) => {
           Contactame
         </button>
 
-        {isCompact && (
+        {isMobile && (
   <button
     className="nav-hamburger"
     aria-label="Abrir menú"
