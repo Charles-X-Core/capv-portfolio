@@ -5,6 +5,25 @@ const SOFT_LIMIT_RADIUS = 360;
 const HALO_INNER = 0.82;
 const HALO_OUTER = 1.0;
 
+/* ================= IMAGE CACHE ================= */
+const imageCache = {};
+
+export function preloadImages() {
+  NODES_DATA.forEach((node) => {
+    if (node.icon && !imageCache[node.icon]) {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        imageCache[node.icon] = img;
+      };
+      img.onerror = () => {
+        imageCache[node.icon] = null;
+      };
+      img.src = node.icon;
+    }
+  });
+}
+
 /* ================= THEME ================= */
 function currentTheme() {
   const isLight = document.body.classList.contains("light");
@@ -44,11 +63,18 @@ function drawCard(ctx, x, y, data, isHover, compact, theme) {
   roundRect(ctx, x - w / 2 + 10, y - 16, 30, 30, 12);
   ctx.fill();
 
-  /* icon */
-  ctx.font = "15px Inter, system-ui, sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillStyle = data.color;
-  ctx.fillText(data.icon, x - w / 2 + 25, y + 5);
+  /* icon image from cache */
+  const img = imageCache[data.icon];
+  if (img) {
+    const iconSize = 22;
+    ctx.drawImage(
+      img,
+      x - w / 2 + 14,
+      y - iconSize / 2,
+      iconSize,
+      iconSize
+    );
+  }
 
   /* title */
   ctx.textAlign = "left";
@@ -142,38 +168,61 @@ export function drawScene(
   /* ================= CORE ================= */
   const pulse = 1 + Math.sin(core.position.x * 0.01) * 0.03;
   const r = CONFIG.core.radius * 1.35;
+  const cx = core.position.x;
+  const cy = core.position.y;
 
   ctx.save();
-  ctx.shadowBlur = 42;
+
+  const outerGlow = ctx.createRadialGradient(cx, cy, r * 0.5, cx, cy, r * 2.5);
+  outerGlow.addColorStop(0, "rgba(37,99,235,0.3)");
+  outerGlow.addColorStop(0.5, "rgba(37,99,235,0.1)");
+  outerGlow.addColorStop(1, "rgba(37,99,235,0)");
+  ctx.fillStyle = outerGlow;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 2.5 * pulse, 0, Math.PI * 2);
+  ctx.fill();
+
+  const coreGradient = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.3, 0, cx, cy, r * 1.8);
+  coreGradient.addColorStop(0, "#60a5fa");
+  coreGradient.addColorStop(0.5, CONFIG.core.color);
+  coreGradient.addColorStop(1, "#1e3a8a");
+  ctx.shadowBlur = 48;
   ctx.shadowColor = CONFIG.core.color;
-  ctx.fillStyle = theme.coreAura;
-
+  ctx.fillStyle = coreGradient;
   ctx.beginPath();
-  ctx.arc(
-    core.position.x,
-    core.position.y,
-    r * pulse + 18,
-    0,
-    Math.PI * 2
-  );
+  ctx.arc(cx, cy, r * pulse, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.shadowBlur = 26;
-  ctx.fillStyle = CONFIG.core.color;
+  ctx.shadowBlur = 0;
+  const innerRing = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 0.9);
+  innerRing.addColorStop(0, "rgba(255,255,255,0.25)");
+  innerRing.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = innerRing;
   ctx.beginPath();
-  ctx.arc(core.position.x, core.position.y, r * pulse, 0, Math.PI * 2);
+  ctx.arc(cx, cy, r * 0.85 * pulse, 0, Math.PI * 2);
   ctx.fill();
+
+  ctx.strokeStyle = "rgba(255,255,255,0.15)";
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 0.6 * pulse, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
   ctx.restore();
 
   /* ================= CORE TEXT ================= */
   ctx.save();
   ctx.textAlign = "center";
-  ctx.font = "15px Inter, system-ui, sans-serif";
-  ctx.fillStyle = "#fff";
-  ctx.fillText("CAPV", core.position.x, core.position.y - 4);
+  ctx.shadowBlur = 8;
+  ctx.shadowColor = "rgba(0,0,0,0.5)";
+  ctx.font = "bold 16px Inter, system-ui, sans-serif";
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText("CAPV", cx, cy - 2);
 
-  ctx.font = "9px Inter, system-ui, sans-serif";
-  ctx.fillStyle = theme.textSubStrong;
-  ctx.fillText("CORE NEXUS", core.position.x, core.position.y + 14);
+  ctx.font = "8px Inter, system-ui, sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.fillText("◉ NEXUS ◉", cx, cy + 16);
   ctx.restore();
 }

@@ -47,8 +47,8 @@
 }
 
 /* ===============================
-   CANVAS – FUNDIDO TOTAL
-   =============================== */
+    CANVAS – FUNDIDO TOTAL
+    =============================== */
 
 .atomic-network canvas {
   width: 100%;
@@ -69,6 +69,12 @@
     rgba(0,0,0,0.35) 90%,
     transparent 100%
   );
+
+  pointer-events: auto;
+}
+
+.atomic-network canvas:hover {
+  cursor: default;
 }
 
 

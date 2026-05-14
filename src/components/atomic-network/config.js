@@ -1,11 +1,11 @@
 
 export const NODES_DATA = [
-  { id: "mobile", label: "Mobile Dev", sub: "Android, Kotlin", icon: "📱", color: "#8b5cf6" },
-  { id: "devops", label: "DevOps", sub: "Docker, CI/CD", icon: "⚙️", color: "#38bdf8" },
-  { id: "arch", label: "Architecture", sub: "Scalable Systems", icon: "🧩", color: "#34d399" },
-  { id: "backend", label: "Backend", sub: "Java, Spring", icon: "🧠", color: "#f472b6" },
-  { id: "security", label: "Security", sub: "OAuth2, JWT", icon: "🔒", color: "#fb923c" },
-  { id: "cloud", label: "Cloud Native", sub: "Azure, AWS", icon: "☁️", color: "#60a5fa" },
+  { id: "mobile", label: "Mobile Dev", sub: "Android, Kotlin", icon: "/icons/android_ico.png", color: "#8b5cf6" },
+  { id: "devops", label: "DevOps", sub: "Docker, CI/CD", icon: "/icons/devOps_ico.png", color: "#38bdf8" },
+  { id: "arch", label: "Architecture", sub: "Scalable Systems", icon: "/icons/azure_ico.png", color: "#34d399" },
+  { id: "backend", label: "Backend", sub: "Java, Spring", icon: "/icons/spring_ico.png", color: "#f472b6" },
+  { id: "cloud", label: "Cloud Native", sub: "Azure, AWS", icon: "/icons/cloud_ico.png", color: "#60a5fa" },
+  { id: "docker", label: "Container", sub: "Docker, K8s", icon: "/icons/docker_ico.png", color: "#fb923c" },
 ];
 
 export const THEMES = {

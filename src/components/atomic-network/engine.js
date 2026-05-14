@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 import { CONFIG, NODES_DATA } from "./config";
-import { drawScene } from "./draw";
+import { drawScene, preloadImages } from "./draw";
 
 const {
   Engine,
@@ -45,6 +45,8 @@ const clamp01 = (v) => Math.max(0, Math.min(1, v));
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
 export function initEngine(container, opts = {}) {
+  preloadImages();
+
   const width = container.clientWidth;
   const height = container.clientHeight;
 
@@ -130,6 +132,9 @@ export function initEngine(container, opts = {}) {
 
   /* ================= MOUSE ================= */
   const mouse = Mouse.create(canvas);
+  mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+  mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
   const mouseConstraint = MouseConstraint.create(engine, {
     mouse,
     constraint: { stiffness: 0.25, render: { visible: false } },
