@@ -72,7 +72,7 @@
 
 .hero-left {
   width: 100%;
-  max-width: 100%;
+  max-width: 480px;
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -232,7 +232,7 @@
 
 /* Description */
 .hero-description {
-  max-width: 100%;
+  max-width: 460px;
   font-size: clamp(0.85rem, 3vw, 1.05rem);
   line-height: 1.6;
   color: var(--text-muted);
