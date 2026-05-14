@@ -77,6 +77,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  text-align: left;
 }
 
 /* Tagline */
@@ -136,20 +137,18 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Roles - scrollable on mobile */
+/* Roles - 3x2 grid on mobile */
 .hero-roles {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 0.25rem;
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  max-width: 360px;
 }
 
-.hero-roles::-webkit-scrollbar {
-  display: none;
+.hero-roles .hero-role:nth-child(4),
+.hero-roles .hero-role:nth-child(5) {
+  justify-self: start;
+  grid-column: span 1;
 }
 
 .hero-role {
@@ -168,15 +167,23 @@
   border-radius: 999px;
   border: 1px solid rgba(37,99,235,0.08);
   white-space: nowrap;
-  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-roles {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 100%;
+  }
+  .hero-roles .hero-role:nth-child(4),
+  .hero-roles .hero-role:nth-child(5) {
+    justify-self: auto;
+  }
 }
 
 @media (min-width: 900px) {
   .hero-roles {
+    display: flex;
     flex-wrap: wrap;
-    overflow-x: visible;
-    mask-image: none;
-    -webkit-mask-image: none;
   }
   .hero-role {
     font-size: 0.9rem;

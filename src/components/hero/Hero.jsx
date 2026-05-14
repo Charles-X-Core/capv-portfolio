@@ -3,10 +3,11 @@ import AtomicNetwork from "../atomic-network/AtomicNetwork";
 import HeroTechCarousel from "../hero-tech/HeroTechCarousel";
 
 
-const go = (index) => {
-  window.dispatchEvent(
-    new CustomEvent('progressive:navigate', { detail: index })
-  )
+const goTo = (id) => {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 }
 
 
@@ -65,7 +66,7 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary" onClick={() => go(3)}>
+            <button className="btn-primary" onClick={() => goTo('projects')}>
               Ver Proyectos →
             </button>
 
