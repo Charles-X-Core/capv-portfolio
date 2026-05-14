@@ -13,7 +13,7 @@
   min-width: 650px; 
   padding: 40px 0;    
   overflow: visible;
-  gap: 10px; /* <--- Cambia este número para dar más o menos espacio */
+  gap: 10px;
 }
 
 /* --- CONTENEDOR ESTABLE (HITBOX) --- */
@@ -186,5 +186,41 @@
   border: 1px solid var(--skill-tag-border);
   padding: 3px 8px;
   border-radius: 6px;
+}
+
+/* ===============================
+    MOBILE FIXES
+    =============================== */
+@media (max-width: 900px) {
+  .skills-row {
+    min-width: 0;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 0;
+    padding: 20px 0;
+  }
+
+  .skills-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .skill-card-container {
+    flex: 0 0 200px;
+    margin-right: 0;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-row {
+    padding: 12px 0;
+  }
+
+  .skill-card-container {
+    flex: 0 0 170px;
+    height: 200px;
+  }
 }
 
