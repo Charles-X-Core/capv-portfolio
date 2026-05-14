@@ -107,7 +107,7 @@ const goTo = (id) => {
       </nav>
 
       {/* ACTIONS */}
-      <div className="navbar-actions" ref={actionsRef}>
+      <div className="navbar-actions">
 
         {/* MODO DEV */}
        { /*<button
