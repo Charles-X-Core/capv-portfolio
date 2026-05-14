@@ -207,6 +207,7 @@
   flex-direction: column;
   gap: 0.65rem;
   width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -220,11 +221,11 @@
 
 .hero-actions button,
 .hero-actions a {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.2rem;
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -233,8 +234,11 @@
   outline: none;
   text-decoration: none;
   min-width: 0;
+  max-width: 100%;
   width: 100%;
-  white-space: nowrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
@@ -242,6 +246,7 @@
   .hero-actions button,
   .hero-actions a {
     width: auto;
+    padding: 0.85rem 1.5rem;
   }
 }
 
