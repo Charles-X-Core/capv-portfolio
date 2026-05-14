@@ -1,7 +1,5 @@
 import './Hero.css'
 import AtomicNetwork from "../atomic-network/AtomicNetwork";
-import HeroBadge from "../hero-badge/HeroBadge";
-import { AVAILABILITY_CONFIG } from "../../config/availability";
 import HeroTechCarousel from "../hero-tech/HeroTechCarousel";
 
 
@@ -24,8 +22,7 @@ export default function Hero() {
 
         {/* IZQUIERDA */}
         <div className="hero-left">
- <HeroBadge className="hero-badge" status={AVAILABILITY_CONFIG.status} />
-
+          <span className="hero-tagline">Ingeniero de Sistemas · Arquitecto Cloud</span>
 
           <h1 className="hero-title">
   Carlos Alonso <br />
