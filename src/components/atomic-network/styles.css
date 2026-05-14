@@ -71,6 +71,7 @@
   );
 
   pointer-events: auto;
+  touch-action: pan-y;
 }
 
 .atomic-network canvas:hover {

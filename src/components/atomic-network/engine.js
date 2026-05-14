@@ -139,6 +139,9 @@ export function initEngine(container, opts = {}) {
     mouse,
     constraint: { stiffness: 0.25, render: { visible: false } },
   });
+  mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+  mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
   World.add(engine.world, mouseConstraint);
 
   let hoveredNode = null;
