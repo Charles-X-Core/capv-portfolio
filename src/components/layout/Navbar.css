@@ -135,6 +135,25 @@
   background: color-mix(in srgb, var(--primary) 12%, var(--bg-card));
 }
 
+/* Theme toggle mobile - always visible on mobile */
+.theme-toggle-mobile {
+  position: fixed;
+  top: 14px;
+  right: 70px;
+  z-index: 99999;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 900px) {
+  .theme-toggle-mobile {
+    display: none;
+  }
+}
+
 /* CTA */
 .navbar-cta {
   background: var(--primary);

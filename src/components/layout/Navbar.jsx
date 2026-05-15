@@ -67,14 +67,6 @@ export default function Navbar({ hidden , atTop }) {
           )}
 
           <div className="navbar-actions">
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Cambiar tema"
-            >
-              {theme === 'dark' ? '☀︎' : '☾'}
-            </button>
-
             {!isMobile && (
               <button className="navbar-cta" onClick={() => goTo('contact')}>
                 Contactame
@@ -83,6 +75,15 @@ export default function Navbar({ hidden , atTop }) {
           </div>
         </div>
       </header>
+
+      {/* Theme toggle - FUERA del header, siempre visible */}
+      <button
+        className="theme-toggle theme-toggle-mobile"
+        onClick={toggleTheme}
+        aria-label="Cambiar tema"
+      >
+        {theme === 'dark' ? '☀︎' : '☾'}
+      </button>
 
       {/* Hamburger - FUERA del header, siempre visible */}
       <button
