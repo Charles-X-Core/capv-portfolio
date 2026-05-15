@@ -9,9 +9,8 @@
   background: var(--nav-bg);
   backdrop-filter: var(--nav-blur);
   border-bottom: 1px solid var(--nav-border);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              background 0.3s ease,
-              opacity 0.25s ease;
+  transition: transform 0.3s ease-in-out, background 0.3s ease, opacity 0.25s ease;
+  will-change: transform;
 }
 
 .navbar-inner {
