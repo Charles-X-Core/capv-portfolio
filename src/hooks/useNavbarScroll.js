@@ -4,7 +4,7 @@ export function useNavbarScroll({
   threshold = 5,
   menuOpen = false,
 } = {}) {
-  const lastScroll = useRef(0);
+  const lastScroll = useRef(window.scrollY);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
 
@@ -15,15 +15,17 @@ export function useNavbarScroll({
       const current = window.scrollY;
       const delta = current - lastScroll.current;
 
-      setAtTop(current <= 10);
+      const isAtTop = current <= 10;
+      setAtTop(isAtTop);
 
-      if (Math.abs(delta) < threshold) return;
-
-      if (delta > 0 && current > 50) {
-        setHidden(true);
+      if (Math.abs(delta) < threshold) {
+        lastScroll.current = current;
+        return;
       }
 
-      if (delta < 0) {
+      if (delta > 0) {
+        setHidden(true);
+      } else if (delta < 0) {
         setHidden(false);
       }
 
