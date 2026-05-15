@@ -203,6 +203,8 @@
   inset: 0;
   z-index: var(--z-drawer-overlay, 998);
   background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -223,7 +225,7 @@
   z-index: var(--z-drawer, 999);
   width: min(82vw, 340px);
   height: 100dvh;
-  background: #0a0f1e;
+  background: var(--bg-main);
   border-left: 2px solid rgba(37, 99, 235, 0.15);
   padding: 2rem 1.5rem;
   display: flex;
@@ -300,6 +302,31 @@
   color: #60a5fa;
   border-color: rgba(37, 99, 235, 0.25);
   padding-left: 1.5rem;
+}
+
+/* Light mode for drawer */
+body.light .drawer-overlay {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+body.light .drawer-links button {
+  color: rgba(15, 23, 42, 0.9);
+  background: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.12);
+}
+
+body.light .drawer-links button:hover,
+body.light .drawer-links button:focus-visible {
+  background: rgba(37, 99, 235, 0.15);
+  color: #2563eb;
+}
+
+body.light .drawer-close {
+  color: var(--text-main);
+}
+
+body.light .drawer-title {
+  color: var(--text-main);
 }
 
 /* ================================
