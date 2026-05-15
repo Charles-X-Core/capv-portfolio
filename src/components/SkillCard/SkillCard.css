@@ -219,9 +219,9 @@
   .skill-card-container {
     flex: none;
     width: 100%;
-    height: 90px;
+    height: 110px;
     margin-right: 0;
-    margin-bottom: -60px;
+    margin-bottom: -70px;
     scroll-snap-align: none;
     transition: height 0.4s ease, margin 0.4s ease, z-index 0.4s ease;
   }
@@ -257,8 +257,8 @@
   }
 
   .skill-card-container {
-    height: 80px;
-    margin-bottom: -50px;
+    height: 100px;
+    margin-bottom: -60px;
   }
 
   .skill-card-container:hover,
