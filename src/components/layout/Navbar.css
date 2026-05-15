@@ -203,6 +203,8 @@
   inset: 0;
   z-index: var(--z-drawer-overlay, 998);
   background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -304,7 +306,7 @@
 
 /* Light mode for drawer */
 body.light .drawer-overlay {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 body.light .drawer-links button {
