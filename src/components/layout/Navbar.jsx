@@ -80,21 +80,22 @@ export default function Navbar({ hidden , atTop }) {
                 Contactame
               </button>
             )}
-
-            <button
-              className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-              onClick={() => setMenuOpen(v => !v)}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Drawer overlay + panel - FUERA del header para que no se mueva con el navbar */}
+      {/* Hamburger - FUERA del header, siempre visible */}
+      <button
+        className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
+        aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+        onClick={() => setMenuOpen(v => !v)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      {/* Drawer overlay + panel - FUERA del header */}
       <div
         className={`drawer-overlay ${menuOpen ? 'open' : ''}`}
         onClick={closeMenu}
