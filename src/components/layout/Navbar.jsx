@@ -67,14 +67,6 @@ export default function Navbar({ hidden , atTop }) {
           )}
 
           <div className="navbar-actions">
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Cambiar tema"
-            >
-              {theme === 'dark' ? '☀︎' : '☾'}
-            </button>
-
             {!isMobile && (
               <button className="navbar-cta" onClick={() => goTo('contact')}>
                 Contactame
@@ -84,28 +76,27 @@ export default function Navbar({ hidden , atTop }) {
         </div>
       </header>
 
-      {/* Mobile: Theme toggle + Hamburger - fuera del header */}
-      {isMobile && (
-        <>
-          <button
-            className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
-            onClick={toggleTheme}
-            aria-label="Cambiar tema"
-          >
-            <span className="theme-icon sun">☀︎</span>
-            <span className="theme-icon moon">☾</span>
-          </button>
+      {/* Theme toggle - dinámico y artístico (visible siempre) */}
+      <button
+        className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+        onClick={toggleTheme}
+        aria-label="Cambiar tema"
+      >
+        <span className="theme-icon sun">☀︎</span>
+        <span className="theme-icon moon">☾</span>
+      </button>
 
-          <button
-            className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            onClick={() => setMenuOpen(v => !v)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </>
+      {/* Hamburger - solo móvil */}
+      {isMobile && (
+        <button
+          className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          onClick={() => setMenuOpen(v => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       )}
 
       {/* Drawer overlay + panel */}

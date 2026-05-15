@@ -116,33 +116,12 @@
   flex-shrink: 0;
 }
 
-/* Theme toggle - desktop (original) */
-.theme-toggle {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 1px solid var(--border-soft);
-  background: var(--bg-card);
-  color: var(--text-main);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background: color-mix(in srgb, var(--primary) 12%, var(--bg-card));
-}
-
-/* Theme toggle - dynamic mobile version */
+/* Theme toggle - dinámico y artístico (oficial para web y móvil) */
 .theme-toggle-dynamic {
   position: fixed;
-  top: 14px;
-  right: 70px;
   z-index: 99999;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 2px solid transparent;
   background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
@@ -156,6 +135,25 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
+/* Posición móvil */
+@media (max-width: 899px) {
+  .theme-toggle-dynamic {
+    top: 15px;
+    right: 70px;
+  }
+}
+
+/* Posición desktop - en el navbar */
+@media (min-width: 900px) {
+  .theme-toggle-dynamic {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    box-shadow: none;
+    border: 2px solid transparent;
+  }
+}
+
 .theme-toggle-dynamic:hover {
   transform: scale(1.1) rotate(5deg);
   box-shadow: 0 6px 24px rgba(59, 130, 246, 0.35);
@@ -167,7 +165,7 @@
 
 .theme-icon {
   position: absolute;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
 }
 
