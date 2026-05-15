@@ -68,23 +68,35 @@ export default function Navbar({ hidden , atTop }) {
 
           <div className="navbar-actions">
             {!isMobile && (
-              <button className="navbar-cta" onClick={() => goTo('contact')}>
-                Contactame
-              </button>
+              <>
+                <button
+                  className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+                  onClick={toggleTheme}
+                  aria-label="Cambiar tema"
+                >
+                  <span className="theme-icon sun">☀︎</span>
+                  <span className="theme-icon moon">☾</span>
+                </button>
+                <button className="navbar-cta" onClick={() => goTo('contact')}>
+                  Contactame
+                </button>
+              </>
             )}
           </div>
         </div>
       </header>
 
-      {/* Theme toggle - dinámico y artístico (visible siempre) */}
-      <button
-        className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
-        onClick={toggleTheme}
-        aria-label="Cambiar tema"
-      >
-        <span className="theme-icon sun">☀︎</span>
-        <span className="theme-icon moon">☾</span>
-      </button>
+      {/* Theme toggle - solo móvil (fuera del header) */}
+      {isMobile && (
+        <button
+          className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+          onClick={toggleTheme}
+          aria-label="Cambiar tema"
+        >
+          <span className="theme-icon sun">☀︎</span>
+          <span className="theme-icon moon">☾</span>
+        </button>
+      )}
 
       {/* Hamburger - solo móvil */}
       {isMobile && (
