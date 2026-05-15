@@ -75,7 +75,7 @@ export default function Navbar({ hidden , atTop }) {
                   aria-label="Cambiar tema"
                 >
                   <span className="theme-icon star">✦</span>
-                  <span className="theme-icon moon">●</span>
+                  <span className="theme-icon moon">☾</span>
                 </button>
                 <button className="navbar-cta" onClick={() => goTo('contact')}>
                   Contactame
@@ -94,7 +94,7 @@ export default function Navbar({ hidden , atTop }) {
           aria-label="Cambiar tema"
         >
           <span className="theme-icon star">✦</span>
-          <span className="theme-icon moon">●</span>
+          <span className="theme-icon moon">☾</span>
         </button>
       )}
 
