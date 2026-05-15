@@ -26,6 +26,13 @@ export default function Navbar({ hidden , atTop }) {
     }
   }, [menuOpen])
 
+  // Cerrar menú cuando se cambia de móvil a desktop
+  useEffect(() => {
+    if (!isMobile && menuOpen) {
+      setMenuOpen(false)
+    }
+  }, [isMobile])
+
   const closeMenu = () => setMenuOpen(false)
 
   const toggleTheme = () => {
