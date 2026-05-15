@@ -96,7 +96,7 @@ export default function Navbar({ hidden , atTop }) {
       {/* Theme toggle - solo móvil (fuera del header) */}
       {isMobile && (
         <button
-          className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+          className={`theme-toggle-dynamic mobile-buttons ${hidden && !menuOpen ? 'hidden' : ''} ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
           onClick={toggleTheme}
           aria-label="Cambiar tema"
         >
@@ -108,7 +108,7 @@ export default function Navbar({ hidden , atTop }) {
       {/* Hamburger - solo móvil */}
       {isMobile && (
         <button
-          className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
+          className={`nav-hamburger mobile-buttons ${hidden && !menuOpen ? 'hidden' : ''} ${menuOpen ? 'hamburger-open' : ''}`}
           aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
           onClick={() => setMenuOpen(v => !v)}
         >

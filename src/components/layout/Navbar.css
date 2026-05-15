@@ -259,6 +259,17 @@
   }
 }
 
+/* Mobile buttons - hide on scroll down */
+.mobile-buttons {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+}
+
+.mobile-buttons.hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 .nav-hamburger span {
   display: block;
   width: 22px;
