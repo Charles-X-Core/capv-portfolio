@@ -67,6 +67,14 @@ export default function Navbar({ hidden , atTop }) {
           )}
 
           <div className="navbar-actions">
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Cambiar tema"
+            >
+              {theme === 'dark' ? '☀︎' : '☾'}
+            </button>
+
             {!isMobile && (
               <button className="navbar-cta" onClick={() => goTo('contact')}>
                 Contactame
@@ -76,27 +84,31 @@ export default function Navbar({ hidden , atTop }) {
         </div>
       </header>
 
-      {/* Theme toggle - FUERA del header, siempre visible */}
-      <button
-        className="theme-toggle theme-toggle-mobile"
-        onClick={toggleTheme}
-        aria-label="Cambiar tema"
-      >
-        {theme === 'dark' ? '☀︎' : '☾'}
-      </button>
+      {/* Mobile: Theme toggle + Hamburger - fuera del header */}
+      {isMobile && (
+        <>
+          <button
+            className={`theme-toggle-dynamic ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+            onClick={toggleTheme}
+            aria-label="Cambiar tema"
+          >
+            <span className="theme-icon sun">☀︎</span>
+            <span className="theme-icon moon">☾</span>
+          </button>
 
-      {/* Hamburger - FUERA del header, siempre visible */}
-      <button
-        className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-        aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-        onClick={() => setMenuOpen(v => !v)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+          <button
+            className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            onClick={() => setMenuOpen(v => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </>
+      )}
 
-      {/* Drawer overlay + panel - FUERA del header */}
+      {/* Drawer overlay + panel */}
       <div
         className={`drawer-overlay ${menuOpen ? 'open' : ''}`}
         onClick={closeMenu}
