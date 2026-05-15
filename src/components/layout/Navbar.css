@@ -137,8 +137,10 @@
 /* Posición móvil */
 @media (max-width: 899px) {
   .theme-toggle-dynamic {
-    top: 15px;
-    right: 70px;
+    top: 10px;
+    right: 64px;
+    width: 52px;
+    height: 52px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     border-radius: 50%;
   }
@@ -173,8 +175,14 @@
 
 .theme-icon {
   position: absolute;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 899px) {
+  .theme-icon {
+    font-size: 1.8rem;
+  }
 }
 
 /* Dark mode - estrella de neutrones (brillante) */
@@ -249,22 +257,22 @@
    ================================ */
 .nav-hamburger {
   position: fixed;
-  top: 14px;
-  right: 16px;
+  top: 10px;
+  right: 8px;
   z-index: 99999;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
-  border-radius: 12px;
+  border-radius: 50%;
   cursor: pointer;
-  padding: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 @media (min-width: 900px) {
@@ -286,10 +294,10 @@
 
 .nav-hamburger span {
   display: block;
-  width: 22px;
-  height: 2.5px;
+  width: 26px;
+  height: 3px;
   background: var(--text-main);
-  border-radius: 2px;
+  border-radius: 3px;
   transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
 }
