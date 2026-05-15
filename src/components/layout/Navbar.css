@@ -210,8 +210,8 @@
 .theme-toggle-dynamic.is-light .moon {
   color: #0d0d0d;
   opacity: 1;
-  transform: rotate(0deg) scale(1);
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+  transform: rotate(0deg) scale(1.2);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 24px rgba(255, 255, 255, 0.3));
 }
 
 .theme-toggle-dynamic.is-light {
@@ -303,7 +303,8 @@
 }
 
 .hamburger-open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
+  width: 24px;
 }
 
 .hamburger-open span:nth-child(2) {
@@ -312,7 +313,8 @@
 }
 
 .hamburger-open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
+  width: 24px;
 }
 
 /* ================================
