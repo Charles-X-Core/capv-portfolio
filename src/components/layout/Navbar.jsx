@@ -103,6 +103,9 @@ export default function Navbar({ hidden , atTop }) {
       <div className={`drawer-panel ${menuOpen ? 'open' : ''}`}>
         <div className="drawer-header">
           <span className="drawer-title">Menú</span>
+          <button className="drawer-close" onClick={closeMenu} aria-label="Cerrar menú">
+            ✕
+          </button>
         </div>
         <nav className="drawer-links">
           <button onClick={() => goTo('about')}>Sobre mí</button>
