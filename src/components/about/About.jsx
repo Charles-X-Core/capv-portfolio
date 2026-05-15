@@ -4,6 +4,7 @@ import SkillGrid from "../SkillCard/SkillGrid";
 import { skillsPrimary } from "../../data/skillsData/skillsPrimary.js";
 import { motion } from "framer-motion";
 import { useAppleReveal } from "../../hooks/useAppleReveal";
+import AdvancedRadar from "./AdvancedRadar";
 import {
   appleContainer,
   appleItem,
@@ -140,61 +141,9 @@ export default function About() {
             <SkillGrid skills={skillsPrimary} variant="primary" />
           </div>
 
-            <div className="engineering-focus">
+<div className="engineering-focus">
               <h2 className="section-title">Engineering Core</h2>
-              <div className={`radar-chart-container ${isInView ? 'visible' : ''}`}>
-                <svg className="radar-chart" viewBox="0 0 200 200">
-                  <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="2"/>
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="2"/>
-                  <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="2"/>
-                  <circle cx="100" cy="100" r="20" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="2"/>
-                  
-                  <g className="radar-axes">
-                    <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                    <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                    <line x1="150" y1="30" x2="50" y2="170" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                    <line x1="40" y1="40" x2="160" y2="160" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                    <line x1="160" y1="40" x2="40" y2="160" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                    <line x1="30" y1="100" x2="170" y2="100" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
-                  </g>
-                  
-                  <g className="radar-labels" font-family="Inter, system-ui, sans-serif" font-size="12" fill="rgba(229,231,235,0.8)">
-                    <text x="100" y="10" text-anchor="middle">System Design</text>
-                    <text x="190" y="100" text-anchor="start" dy="4">Code Quality</text>
-                    <text x="175" y="185" text-anchor="end">Performance</text>
-                    <text x="100" y="190" text-anchor="middle">Reliability</text>
-                    <text x="25" y="185" text-anchor="start">Security</text>
-                    <text x="10" y="100" text-anchor="end" dy="4">Innovation</text>
-                  </g>
-                  
-                  <polygon className="radar-skill" points="100,20 140,80 160,120 100,160 40,120 60,80" 
-                           fill="rgba(37,99,235,0.15)" stroke="rgba(37,99,235,0.4)" stroke-width="2"/>
-                          
-                  <g className="radar-points">
-                    <circle cx="100" cy="20" r="4" fill="rgba(37,99,235,0.8)"/>
-                    <circle cx="140" cy="80" r="4" fill="rgba(37,99,235,0.8)"/>
-                    <circle cx="160" cy="120" r="4" fill="rgba(37,99,235,0.8)"/>
-                    <circle cx="100" cy="160" r="4" fill="rgba(37,99,235,0.8)"/>
-                    <circle cx="40" cy="120" r="4" fill="rgba(37,99,235,0.8)"/>
-                    <circle cx="60" cy="80" r="4" fill="rgba(37,99,235,0.8)"/>
-                  </g>
-                </svg>
-              </div>
-              
-              <div className="impact-metrics">
-                <div className="metric-item">
-                  <h3>40%</h3>
-                  <p>ETL processing time reduction</p>
-                </div>
-                <div className="metric-item">
-                  <h3>99.9%</h3>
-                  <p>Uptime SLA maintained</p>
-                </div>
-                <div className="metric-item">
-                  <h3>5+</h3>
-                  <p>Scalable systems architected</p>
-                </div>
-              </div>
+              <AdvancedRadar />
             </div>
         </motion.div>
         </div>
