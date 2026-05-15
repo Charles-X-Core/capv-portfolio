@@ -43,56 +43,58 @@ export default function Navbar({ hidden , atTop }) {
   }
 
   return (
-    <header
-      className={`navbar
-        ${hidden && !menuOpen ? 'navbar-hidden' : ''}
-        ${atTop && !menuOpen ? 'navbar-top' : 'navbar-scrolled'}
-      `}
-    >
-      <div className="navbar-inner">
-        <div className="navbar-left">
-          <div className="navbar-logo" onClick={() => goTo('hero')}>
-            <img src="/img/logo.png" alt="CAPV" />
-            <span>CAPV</span>
+    <>
+      <header
+        className={`navbar
+          ${hidden && !menuOpen ? 'navbar-hidden' : ''}
+          ${atTop && !menuOpen ? 'navbar-top' : 'navbar-scrolled'}
+        `}
+      >
+        <div className="navbar-inner">
+          <div className="navbar-left">
+            <div className="navbar-logo" onClick={() => goTo('hero')}>
+              <img src="/img/logo.png" alt="CAPV" />
+              <span>CAPV</span>
+            </div>
           </div>
-        </div>
-
-        {!isMobile && (
-          <nav className="navbar-links">
-            <button onClick={() => goTo('about')}>Sobre mí</button>
-            <button onClick={() => goTo('experience')}>Experiencia</button>
-            <button onClick={() => goTo('projects')}>Proyectos</button>
-          </nav>
-        )}
-
-        <div className="navbar-actions">
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Cambiar tema"
-          >
-            {theme === 'dark' ? '☀︎' : '☾'}
-          </button>
 
           {!isMobile && (
-            <button className="navbar-cta" onClick={() => goTo('contact')}>
-              Contactame
-            </button>
+            <nav className="navbar-links">
+              <button onClick={() => goTo('about')}>Sobre mí</button>
+              <button onClick={() => goTo('experience')}>Experiencia</button>
+              <button onClick={() => goTo('projects')}>Proyectos</button>
+            </nav>
           )}
 
-          <button
-            className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            onClick={() => setMenuOpen(v => !v)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </div>
+          <div className="navbar-actions">
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Cambiar tema"
+            >
+              {theme === 'dark' ? '☀︎' : '☾'}
+            </button>
 
-      {/* Drawer overlay + panel */}
+            {!isMobile && (
+              <button className="navbar-cta" onClick={() => goTo('contact')}>
+                Contactame
+              </button>
+            )}
+
+            <button
+              className={`nav-hamburger ${menuOpen ? 'hamburger-open' : ''}`}
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              onClick={() => setMenuOpen(v => !v)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Drawer overlay + panel - FUERA del header para que no se mueva con el navbar */}
       <div
         className={`drawer-overlay ${menuOpen ? 'open' : ''}`}
         onClick={closeMenu}
@@ -109,6 +111,6 @@ export default function Navbar({ hidden , atTop }) {
           <button onClick={() => goTo('contact')}>Contacto</button>
         </nav>
       </div>
-    </header>
+    </>
   )
 }
