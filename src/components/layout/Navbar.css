@@ -212,41 +212,6 @@
   box-shadow: 0 6px 24px rgba(148, 163, 184, 0.6);
 }
 
-/* Dark mode - sun (amarillo/naranja) */
-.theme-toggle-dynamic.is-dark .sun {
-  color: #fbbf24;
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-.theme-toggle-dynamic.is-dark .moon {
-  color: #e2e8f0;
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.5);
-}
-
-/* Light mode - luna blanca */
-.theme-toggle-dynamic.is-light .sun {
-  color: #f59e0b;
-  opacity: 0;
-  transform: rotate(90deg) scale(0.5);
-}
-
-.theme-toggle-dynamic.is-light .moon {
-  color: #ffffff;
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-.theme-toggle-dynamic.is-light {
-  background: linear-gradient(135deg, #fef3c7, #fcd34d);
-  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
-}
-
-.theme-toggle-dynamic.is-light:hover {
-  box-shadow: 0 6px 24px rgba(251, 191, 36, 0.5);
-}
-
 /* CTA */
 .navbar-cta {
   background: var(--primary);
