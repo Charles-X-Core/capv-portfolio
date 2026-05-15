@@ -139,6 +139,8 @@
   .theme-toggle-dynamic {
     top: 15px;
     right: 70px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
   }
 }
 
@@ -192,7 +194,7 @@
 /* Light mode - luna creciente negra */
 .theme-toggle-dynamic.is-light .star {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
   opacity: 0;
   transform: rotate(90deg) scale(0.5);
 }
@@ -201,11 +203,23 @@
   color: #0d0d0d;
   opacity: 1;
   transform: rotate(0deg) scale(1);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
 }
 
 .theme-toggle-dynamic.is-light {
   background: linear-gradient(135deg, #e2e8f0, #94a3b8);
-  box-shadow: 0 4px 16px rgba(148, 163, 184, 0.4);
+}
+
+@media (max-width: 899px) {
+  .theme-toggle-dynamic.is-light {
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@media (min-width: 900px) {
+  .theme-toggle-dynamic.is-light {
+    box-shadow: 0 4px 16px rgba(148, 163, 184, 0.4);
+  }
 }
 
 .theme-toggle-dynamic.is-light:hover {
