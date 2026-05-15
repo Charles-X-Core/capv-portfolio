@@ -15,7 +15,7 @@ export function useNavbarScroll({
       const current = window.scrollY;
       const delta = current - lastScroll.current;
 
-      const isAtTop = current <= 10;
+      const isAtTop = current <= 50;
       setAtTop(isAtTop);
 
       if (Math.abs(delta) < threshold) {

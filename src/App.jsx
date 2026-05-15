@@ -12,7 +12,7 @@ import Contact from './components/contact/Contact'
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { hidden, atTop } = useNavbarScroll({
-    threshold: 12,
+    threshold: 5,
     menuOpen,
   });
 
@@ -25,11 +25,13 @@ function App() {
         setMenuOpen={setMenuOpen}
       />
 
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Contact />
+      <main style={{ paddingTop: '72px' }}>
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
 
       <Footer />
     </>
