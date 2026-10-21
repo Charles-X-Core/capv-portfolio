@@ -1,38 +1,76 @@
 export const experiences = [
   {
-    label: "Kasnet Perú",
-    role: "Pre-Practicante de Análisis de Datos",
-    company: "Kasnet Perú",
-    period: "2023 – Presente",
+    label: "Optimal Health Now",
+    role: "Desarrollador Full-Stack",
+    organization: "Optimal Health Now",
+    context: "Landing page y ERP médico",
+    type: "Cliente",
+    period: "Julio 2026 – Agosto 2026",
+    description:
+      "Desarrollo web y sistema ERP médico para un cliente de Estados Unidos.",
     bullets: [
-      "Desarrollo de scripts de automatización ETL reduciendo el tiempo de procesamiento de datos en un 40%.",
-      "Implementación de dashboards interactivos en PowerBI para toma de decisiones gerenciales.",
-      "Optimización de consultas SQL complejas para reportes financieros de alto volumen."
+      "Desarrollo y actualización de la landing page corporativa para presentar servicios médicos y facilitar el contacto con potenciales pacientes.",
+      "Mejoras de estructura, componentes, contenidos y experiencia de usuario responsive.",
+      "Desarrollo de un ERP médico con módulos de pacientes, citas, agenda médica y documentos clínicos.",
+      "Gestión de citas mediante operaciones CRUD, calendario, estados y validaciones para prevenir cruces de horarios.",
+      "Implementación de API REST con Java y Spring Boot, autenticación con Spring Security y control de acceso basado en los roles DOCTORA y ENFERMERA.",
+      "Desarrollo de interfaces con React y funcionalidades PWA para tablets, incluida la captura de firmas digitales.",
+      "Despliegue del backend en un VPS con Ubuntu e integración de MySQL.",
     ],
-    tech: ["SQL Server", "Python", "PowerBI", "Excel Avanzado"]
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "React",
+      "JavaScript",
+      "MySQL",
+      "REST API",
+      "HTML",
+      "CSS",
+      "Ubuntu Server",
+      "VPS",
+      "PWA",
+    ],
+  },
+  {
+    label: "Vita Mirabilis",
+    role: "Desarrollador de Software",
+    organization: "Vita Mirabilis",
+    context: "Sistema de gestión e historial clínico odontológico",
+    type: "Cliente",
+    period: "Mayo 2026 – Junio 2026",
+    description:
+      "Desarrollo de una aplicación de escritorio para la gestión integral de consultorios odontológicos.",
+    bullets: [
+      "Diseño y desarrollo de una aplicación para centralizar pacientes, historias clínicas, odontogramas, tratamientos y pagos.",
+      "Implementación de recetas, notificaciones por WhatsApp y captura de firmas digitales.",
+      "Desarrollo del flujo de atención desde el registro y diagnóstico hasta el tratamiento y el cobro.",
+      "Persistencia local con SQLite y sincronización con Turso para integrar la base de datos local con una base de datos remota.",
+    ],
+    tech: [
+      "Electron",
+      "React",
+      "Node.js",
+      "JavaScript",
+      "SQLite",
+      "Turso",
+    ],
   },
   {
     label: "Mecánica Robocop",
-    role: "Desarrollador Freelancer",
-    company: "Mecánica Robocop",
-    period: "2022",
+    role: "Desarrollador de Software",
+    organization: "Mecánica Robocop",
+    context: "Sistema de inventario",
+    type: "Cliente",
+    period: "Mayo 2025 – Julio 2025",
+    description:
+      "Implementación y mantenimiento de un sistema de inventario para el negocio del cliente.",
     bullets: [
-      "Sistema full-stack de gestión de inventarios.",
-      "API REST segura para control de productos.",
-      "Despliegue en la nube reduciendo pérdidas operativas."
+      "Implementación y mantenimiento de una aplicación de escritorio de inventario.",
+      "Gestión de la base de datos local SQLite, copias de seguridad y resolución de incidencias.",
+      "Instalación de la red que conecta las máquinas del taller y despliegue del sistema en distintos puntos de trabajo del edificio.",
+      "Soporte posterior a la implementación.",
     ],
-    tech: ["React", "Node.js", "PostgreSQL", "Docker"]
+    tech: ["Electron", "HTML", "CSS", "React", "Node.js", "SQLite"],
   },
-  {
-    label: "Freelance",
-    role: "Backend & Cloud Developer",
-    company: "Proyectos Independientes",
-    period: "2021 – 2022",
-    bullets: [
-      "APIs REST escalables con Java y Spring Boot.",
-      "Automatización de despliegues en Azure.",
-      "Optimización de bases de datos."
-    ],
-    tech: ["Java", "Spring Boot", "Azure", "Docker"]
-  }
 ];

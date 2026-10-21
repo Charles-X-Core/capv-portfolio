@@ -1,38 +1,30 @@
-import { motion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
-export default function ProjectMedia({ media, status }) {
-  if (!media) return null;
+export default function ProjectMedia({ media, title }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (!media?.src) return null;
+
+  const alt = media.alt || `Vista previa de ${title}`;
 
   return (
-    <motion.div
-      className="project-media"
-      initial={{ opacity: 0, scale: 0.50 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-    >
-      {/* STATUS */}
-      <div className="media-status">
-        <span className="dot" />
-        {status}
-      </div>
-
-      {/* MEDIA */}
+    <div className="project-media">
       {media.type === "image" && (
-        <img src={media.src} alt={media.alt || ""} />
+        <img src={media.src} alt={alt} loading="lazy" decoding="async" />
       )}
 
       {media.type === "video" && (
         <video
           src={media.src}
-          autoPlay
+          autoPlay={!prefersReducedMotion}
           muted
-          loop
+          loop={!prefersReducedMotion}
+          controls={prefersReducedMotion}
           playsInline
+          preload="metadata"
+          aria-label={alt}
         />
       )}
-
-      {/* OVERLAY */}
-      <div className="media-overlay" />
-    </motion.div>
+    </div>
   );
 }

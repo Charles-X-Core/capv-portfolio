@@ -71,7 +71,7 @@ export default function Hero() {
             </button>
 
             <a
-              href="/cv/CV-2025-Carlos Alonso Picho Vargas.pdf"
+              href="/cv/CV_Carlos_Picho_Vargas_2026.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
