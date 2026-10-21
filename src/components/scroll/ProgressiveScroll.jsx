@@ -42,20 +42,6 @@ export default function ProgressiveScroll({ children, onNavbarToggle }) {
   // =============================
   // 🔑 RESET TOTAL (SCROLL REAL + VIRTUAL)
   // =============================
-  const resetToVirtualScroll = (index) => {
-    setFreeScroll(false);
-
-    // reset scroll real
-    window.scrollTo({ top: 0, behavior: "instant" });
-
-    // reset scroll virtual
-    const target = index * GAP;
-    scrollRef.current = target;
-    setScroll(target);
-  };
-
-
-
 const fullReset = (index = 0) => {
   // 🔒 bloquear scroll real
   setFreeScroll(false);
@@ -236,8 +222,10 @@ const fullReset = (index = 0) => {
 
   
   useEffect(() => {
-  fullReset(0);
-}, []);
+    // En el montaje el estado ya arranca en 0 (scroll virtual, freeScroll y
+    // offsets); solo hay que descartar la posición restaurada por el navegador.
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
 
   // =============================

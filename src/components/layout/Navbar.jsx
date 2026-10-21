@@ -8,7 +8,12 @@ export default function Navbar({ hidden , atTop }) {
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 899px)')
-    const handler = (e) => setIsMobile(e.matches)
+    const handler = (e) => {
+      setIsMobile(e.matches)
+      // Cerrar el drawer al pasar de móvil a desktop desde el propio evento,
+      // sin provocar un setState síncrono dentro de un efecto.
+      if (!e.matches) setMenuOpen(false)
+    }
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [])
@@ -25,13 +30,6 @@ export default function Navbar({ hidden , atTop }) {
       document.body.classList.remove('menu-open')
     }
   }, [menuOpen])
-
-  // Cerrar menú cuando se cambia de móvil a desktop
-  useEffect(() => {
-    if (!isMobile && menuOpen) {
-      setMenuOpen(false)
-    }
-  }, [isMobile])
 
   const closeMenu = () => setMenuOpen(false)
 

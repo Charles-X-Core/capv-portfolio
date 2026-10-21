@@ -60,8 +60,6 @@ function HexagonCard({ children, delay }) {
 }
 
 export default function AdvancedRadar() {
-  const [hovered, setHovered] = useState(null)
-
   return (
     <div className="advanced-radar-container">
       {/* Radar Chart */}

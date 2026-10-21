@@ -11,11 +11,6 @@ import {
   appleItemRight,
 } from "../../animations/appleReveal";
 
-const go = (index) => {
-  window.dispatchEvent(
-    new CustomEvent("progressive:navigate", { detail: index })
-  );
-};
 const goTo = (id) => {
   const el = document.getElementById(id);
   if (!el) return;
