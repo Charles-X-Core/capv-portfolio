@@ -4,7 +4,7 @@ import SkillGrid from "../SkillCard/SkillGrid";
 import { skillsPrimary } from "../../data/skillsData/skillsPrimary.js";
 import { motion } from "framer-motion";
 import { useAppleReveal } from "../../hooks/useAppleReveal";
-import AdvancedRadar from "./AdvancedRadar";
+import EngineeringCore from "./EngineeringCore";
 import {
   appleContainer,
   appleItem,
@@ -135,14 +135,11 @@ export default function About() {
             </h4>
             <SkillGrid skills={skillsPrimary} variant="primary" />
           </div>
-
-<div className="engineering-focus">
-              <h2 className="section-title">Engineering Core</h2>
-              <AdvancedRadar />
-            </div>
         </motion.div>
         </div>
         </div>
+
+        <EngineeringCore />
       </div>
     </motion.section>
     

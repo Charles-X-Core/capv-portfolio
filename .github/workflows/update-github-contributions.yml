@@ -1,0 +1,59 @@
+name: Update GitHub contribution snapshot
+
+on:
+  schedule:
+    # Daily at 04:17 UTC. The exact minute is intentionally off-peak.
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/portfolio-improvements
+    paths:
+      - .github/workflows/update-github-contributions.yml
+      - scripts/generate-github-contributions.mjs
+      - lib/githubContributions.js
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-contribution-snapshot
+  cancel-in-progress: false
+
+jobs:
+  update-snapshot:
+    name: Generate and commit snapshot
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate public contribution snapshot
+        env:
+          # Prefer an explicit read:user PAT. If it is not configured, try the
+          # ephemeral Actions token before failing; it is never exposed to the
+          # browser or written to the snapshot.
+          CONTRIBUTIONS_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN || github.token }}
+          GITHUB_LOGIN: Charles-X-Core
+        run: node scripts/generate-github-contributions.mjs
+
+      - name: Commit snapshot
+        run: |
+          git add public/data/github-contributions.json
+
+          if git diff --cached --quiet -- public/data/github-contributions.json; then
+            echo "The contribution snapshot has not changed."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(data): update GitHub contribution snapshot"
+          git push
