@@ -1,12 +1,14 @@
 import { useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { projects } from "./projects.data";
 import {
   ALL_CATEGORY,
   filterProjects,
   getCategoryOptions,
+  sortProjects,
 } from "./projectFilters";
 import ProjectCard from "./ProjectCard";
+import ProjectDemoModal from "./ProjectDemoModal";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 import "./Projects.css";
@@ -14,14 +16,16 @@ import "./Projects.css";
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState(ALL_CATEGORY);
   const [query, setQuery] = useState("");
+  const [demoProject, setDemoProject] = useState(null);
   const searchRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
   const { ref, isInView } = useScrollReveal();
 
   const categories = useMemo(() => getCategoryOptions(projects), []);
+  const orderedProjects = useMemo(() => sortProjects(projects), []);
   const visibleProjects = useMemo(
-    () => filterProjects(projects, { category: activeCategory, query }),
-    [activeCategory, query],
+    () => filterProjects(orderedProjects, { category: activeCategory, query }),
+    [orderedProjects, activeCategory, query],
   );
 
   const activeCategoryLabel =
@@ -30,6 +34,10 @@ export default function Projects() {
   const isFiltering =
     activeCategory !== ALL_CATEGORY || query.trim().length > 0;
   const projectWord = visibleProjects.length === 1 ? "proyecto" : "proyectos";
+
+  const demoProjectNumber = demoProject
+    ? orderedProjects.findIndex((item) => item.id === demoProject.id) + 1
+    : 0;
 
   function clearSearch() {
     setQuery("");
@@ -40,6 +48,14 @@ export default function Projects() {
     setActiveCategory(ALL_CATEGORY);
     setQuery("");
     searchRef.current?.focus();
+  }
+
+  function openDemo(project) {
+    setDemoProject(project);
+  }
+
+  function closeDemo() {
+    setDemoProject(null);
   }
 
   return (
@@ -172,7 +188,11 @@ export default function Projects() {
         <div className="projects-catalog" id="projects-catalog">
           {visibleProjects.length > 0 ? (
             visibleProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onOpenDemo={openDemo}
+              />
             ))
           ) : (
             <div className="projects-empty">
@@ -208,6 +228,17 @@ export default function Projects() {
           </a>
         </footer>
       </div>
+
+      <AnimatePresence>
+        {demoProject && (
+          <ProjectDemoModal
+            key={demoProject.id}
+            project={demoProject}
+            projectNumber={demoProjectNumber}
+            onClose={closeDemo}
+          />
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }

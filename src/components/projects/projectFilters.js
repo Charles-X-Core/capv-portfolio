@@ -1,5 +1,28 @@
 export const ALL_CATEGORY = "all";
 
+/**
+ * Orden de presentación del catálogo.
+ *
+ * `featuredRank` es un campo numérico editable: menor valor aparece primero.
+ * Es un orden PROVISIONAL, no una puntuación de calidad. Refleja el criterio
+ * de presentación acordado (producto entregado y verificable primero) y debe
+ * ajustarse a mano cuando el usuario confirme su propio orden.
+ *
+ * Los proyectos sin `featuredRank` se colocan al final, conservando el orden
+ * del array original. El desempate es siempre por `id` para que el resultado
+ * sea determinista e independiente del motor de JavaScript.
+ */
+export function sortProjects(projects) {
+  return [...projects].sort((a, b) => {
+    const rankA = Number.isFinite(a.featuredRank) ? a.featuredRank : Infinity;
+    const rankB = Number.isFinite(b.featuredRank) ? b.featuredRank : Infinity;
+
+    if (rankA !== rankB) return rankA - rankB;
+
+    return String(a.id).localeCompare(String(b.id));
+  });
+}
+
 function normalizeText(value) {
   return String(value ?? "")
     .normalize("NFD")
@@ -48,6 +71,7 @@ export function filterProjects(
         project.short,
         project.title,
         project.subtitle,
+        project.shortDescription,
         project.longDescription,
         ...(project.stack ?? []),
         ...(project.categories ?? []),
