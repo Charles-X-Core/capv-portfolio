@@ -1,51 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-14T11:27:56.013Z",
+  "generatedAt": "2026-11-15T11:56:50.678Z",
   "period": {
-    "from": "2025-11-16",
-    "to": "2026-11-14"
+    "from": "2025-11-23",
+    "to": "2026-11-15"
   },
-  "totalContributions": 858,
+  "totalContributions": 860,
   "weeks": [
-    {
-      "days": [
-        {
-          "date": "2025-11-16",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-11-17",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-11-18",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-11-19",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-11-20",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-11-21",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-11-22",
-          "count": 0,
-          "level": 0
-        }
-      ]
-    },
     {
       "days": [
         {
@@ -2030,9 +1991,24 @@
         },
         {
           "date": "2026-11-14",
-          "count": 1,
+          "count": 2,
           "level": 1
         }
+      ]
+    },
+    {
+      "days": [
+        {
+          "date": "2026-11-15",
+          "count": 1,
+          "level": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ]
     }
   ]
